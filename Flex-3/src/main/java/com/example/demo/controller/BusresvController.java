@@ -26,7 +26,10 @@ public class BusresvController {
 
 	@Autowired
 	private BusresvService bs;
-
+	
+	//소현
+	int a = 101;
+	
 	@GetMapping("/busresv/list/{pageNUM}")
 	public String list(Model model, @PathVariable("pageNUM") int pageNUM) {
 		System.out.println("pageNUM:"+pageNUM);
