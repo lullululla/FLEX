@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <h2>예약 등록</h2>
+    <hr>
+    <div class="container" align="center">
+        <form action="/busresv/insert" method="post">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <table align="center">
+                <tr>
+					<input type="hidden" name="resvno" th:value="${resvno}">
+                    <td>회원 : <span th:text="${id}" id="memberno"></span></td>
+                </tr>
+                <tr>
+                    <td>버스 번호 : <input type="text" name="busno" th:value="${busno}"></td>
+                </tr>
+                <tr>
+                    <td>노선 번호 : <input type="text" name="roadno" th:value="${roadno}"></td>
+                </tr>
+                <tr>
+                    <td>자리 번호 : <input type="text" name="seat" th:value="${seat}"></td>
+                </tr>
+                <tr>
+                    <td>사용한 포인트 : <input type="text" name="usepoint" th:value="${usepoint}"></td>
+                </tr>
+                <tr>
+                    <td>적립 포인트 : <input type="text" name="savepoint" th:value="${savepoint}"></td>
+                </tr>
+                <tr>
+                    <td>예약 날짜 : <input type="text" name="resvdate" th:value="${resvdate}"></td>
+                </tr>
+            </table>
+            <div>
+                <br>
+                <input type="submit" value="등록">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

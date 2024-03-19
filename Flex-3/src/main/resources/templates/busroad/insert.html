@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>버스 등록</title>
+<style>
+    hr {
+      border: none; /* 기본 선 제거 */
+        border-top: 2px solid green; /* 두께, 색상 */
+        margin: 10px 0; /* 선과 주변 요소 간의 간격 조절 */
+        width: 750px;
+    }
+</style>
+<script type="text/javascript">
+    function check(){
+		if (f.arrival.value==f.departure.value){
+				alert("출발지와 도착지가 같을순 없습니다")
+				f.departure.focus();
+				return
+		}
+		if (f.arrtime.value=="선택"){
+			alert("출발시간을 입력해주세요")
+			f.arrtime.focus();
+			return
+		}
+		if (f.tottime.value=="선택"){
+			alert("소요 시간을 입력해주세요")
+			f.tottime.focus();
+			return
+		}
+		document.f.submit();
+	}
+	function reset(){
+		document.f.reset();
+		
+	}
+	function dip_OnOff(v,id){//복수 추가시 배차시간 보이게 하는 스크립트
+	if(v=="plural"){
+		document.getElementById(id).style.display=""; //보이기
+	}else{
+		document.getElementById(id).style.display="none"//안보이기
+	}
+
+}
+</script>
+</head>
+<body>
+    <h2>버스 등록</h2>
+    <hr>
+    <div align="center">
+        <form name="f" action="/busroad/insert" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <h4>*가격 책정 방식*</h4>
+            <h5>-> 일반: 기본요금 = 5000원 x 소요시간</h5>
+            <h5>-> 우등: 기본요금 = 8000원 x 소요시간</h5>
+            
+            <table width="50%" border="1">
+                <tr align="center">
+                    <td>
+                        <input type="radio" name="plus" value="singular" onclick="dip_OnOff(this.value,'dip');" checked>단일 추가
+                        <input type="radio" name="plus" value="plural" onclick="dip_OnOff(this.value,'dip');">복수 추가
+                    </td>
+                </tr>
+                <tr>
+                    <td>버스번호:
+                        <select name="busno">
+                            <option th:if="${#lists.isEmpty(bus_no_list)}">사용가능한 버스가 없습니다</option>
+                            <option th:each="dto : ${bus_no_list}" th:value="${dto.bus_no}" th:text="${dto.bus_no}"></option>
+                        </select>
+                        <a th:if="${#lists.isEmpty(bus_no_list)}" href="bus_insert.do">버스 추가</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>출발지 : 
+                        <select name="arrival">
+                            <option th:each="dto : ${bus_station_list}" th:value="${dto.station_name}" th:text="${dto.station_name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>도착지 : 
+                        <select name="departure">
+                            <option th:each="dto : ${bus_station_list}" th:value="${dto.station_name}" th:text="${dto.station_name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>출발시간 : 
+                        <select name="arrTime">
+                            <option value="선택" selected>선택</option>
+                            <option th:each="status : ${#numbers.sequence(1, 22)}" th:value="${status}" th:text="${status}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>소요시간 : 
+                        <select name="totTime">
+                            <option value="선택" selected>선택</option>
+                            <option th:each="status : ${#numbers.sequence(1, 5)}" th:value="${status}" th:text="${status}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="dip" style="display:none">
+                    <td>배차시간: 
+                        <select name="dipTime">
+                            <option value="선택" selected>선택</option>
+                            <option th:each="status : ${#numbers.sequence(1, 10)}" th:value="${status}" th:text="${status}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr align="right">
+                    <td>
+                        <input type="button" value="추가" onclick="javascript:check()">
+                        <input type="button" value="다시쓰기" onclick="javascript:reset()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

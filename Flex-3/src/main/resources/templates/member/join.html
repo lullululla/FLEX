@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(function(){
+        var currentDate = new Date().toISOString().slice(0,16);
+        document.getElementById('joindate').value = currentDate;
+    });
+</script>
+</head>
+<body>    
+    
+    <h2>회원가입</h2>
+    <form action="/member/join" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        아이디 : <input type="text" name="id"/><br />
+        비밀번호 : <input type="password" name="passwd"/><br />
+        이름 : <input type="text" name="name"/><br />
+        주민번호: <input type="text" name="jumin1"> - <input type="password" name="jumin2"><br />
+        이메일 : <input type="email" name="email"/><br />
+        전화 : <input type="text" name="hp1" size="3" maxlength="3"> -
+                <input type="text" name="hp2" size="4" maxlength="4"> - 
+                <input type="text" name="hp3" size="4" maxlength="4"><br />
+        성별 : <label><input type="radio" name="gender" th:value="0">남자</label>
+              <label><input type="radio" name="gender" th:value="1">여자</label>
+        <input type="hidden" name="role" value="user" />
+        <input type="hidden" name="joindate" id="joindate" />
+        <input type="submit" value="가입"/>
+        <input type="reset" value="다시입력"/>
+    </form>
+</body>
+</html>
