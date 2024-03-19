@@ -26,7 +26,7 @@ public class CartController {
 	public String add(@PathVariable("no") int no, HttpSession session, Model model) {
 		int a;
 		int b;
-		int c;
+		int cd;
 		String view="/cart/add";
 		//로그인사람의 정보를 가져오기위해
 		Authentication authentication
