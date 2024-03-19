@@ -53,8 +53,7 @@ public class BusresvController {
 	public void insertForm(HttpSession session, Model model) {	
 		//로그인사람의 정보를 가져오기위해
 		//지수
-		int a = 2;
-		System.out.println(a);
+		System.out.println("수정됨");
 		Authentication authentication
 		= SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) authentication.getPrincipal();

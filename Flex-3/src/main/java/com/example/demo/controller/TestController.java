@@ -8,6 +8,8 @@ public class TestController {
 	@GetMapping("/")
 	public String TestController() {
 		System.out.println("수정됨ㅇㅇㅇㅇㅇㄹㅇㄹㅇㄹㅇㄹㅇㄹㅇㄷㅇㅇㄹㅇㄹㅇㄹㅇㅇ");
+		System.out.println("hhhh");
+		System.out.println("수정됨ㅇㅇㅇㅇㅇㅇ");
 		return "...";
 	}
 	
