@@ -52,6 +52,9 @@ public class BusresvController {
 	@GetMapping("/busresv/insert")
 	public void insertForm(HttpSession session, Model model) {	
 		//로그인사람의 정보를 가져오기위해
+		//지수
+		int a = 2;
+		System.out.println(a);
 		Authentication authentication
 		= SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) authentication.getPrincipal();
