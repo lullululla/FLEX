@@ -25,6 +25,7 @@ public class CartController {
 	@GetMapping("/cart/add/{no}")
 	public String add(@PathVariable("no") int no, HttpSession session, Model model) {
 		int a;
+		int b;
 		String view="/cart/add";
 		//로그인사람의 정보를 가져오기위해
 		Authentication authentication

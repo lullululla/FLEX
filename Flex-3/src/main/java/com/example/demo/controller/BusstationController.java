@@ -25,7 +25,6 @@ import lombok.Setter;
 
 @Controller
 public class BusstationController {
-
 	public int pageSIZE = 5;
 	public int totalRecord = 0;
 	public int totalPage = 1;
